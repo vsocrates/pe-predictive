@@ -1,5 +1,7 @@
 # pefinder containers
 
+We're making some edits to this container set, so that we can open the PEFinder from a website using Flask. This has only been done to the Docker Container. 
+
 This repository builds a [Docker image](https://hub.docker.com/r/vanessa/pefinder/) and a [Singularity](http://singularity.lbl.gov) image, each that will run PE-Finder to produce output for some input data file. If you are working on your local machine, you can use either Docker or Singularity. If you are running in a shared cluster (HPC) environment where you do not have root permissions, Singularity is your best option. Instructions are included for both.
 
 Packages that need to be installed (e.g. seaborn and radnlp) have versions specified in case a future change breaks this code, you can see this in the top section of the [Dockerfile](Dockerfile).
