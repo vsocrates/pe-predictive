@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="form-wrapper">
+
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+      </div>
+    {% endfor %}
+
+    <h1>Predict Pulmonary Embolisms with <a href="https://researchapps.github.io/clinical/2016/12/01/singularity-pefinder/">PEFinder</a></h1>
+
+    <form class="pure-form" method="POST" action="/">
+
+      <fieldset class="pure-group">
+        <p>Path to folder of reports, or tab separated text file</p>
+        {{ form.reports.label }}
+        {{ form.reports(placeholder='/path/to/reports/for/prediction') }}
+        {% if form.reports.errors %}
+          <ul class="errors">
+            {% for error in form.reports.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+      <hr style="width:50%;text-align:left;margin-left:0">
+      <fieldset class="pure-group">
+        <p>The header column that contains the text of interest (default is report_text)</p>
+        {{ form.report_field.label }}
+        {{ form.report_field(placeholder='report_text') }}
+        {% if form.report_field.errors %}
+          <ul class="errors">
+            {% for error in form.report_field.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+<hr style="width:50%;text-align:left;margin-left:0">
+      <fieldset class="pure-group">
+        <p>The header column that contains the id of the report (default is report_id)</p>
+        {{ form.id_field.label }}
+        {{ form.id_field(placeholder='report_id') }}
+        {% if form.id_field.errors %}
+          <ul class="errors">
+            {% for error in form.id_field.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+<hr style="width:50%;text-align:left;margin-left:0">
+      <fieldset class="pure-group">
+        <p>The field to save pefinder (chapman) result to, not saved unless --no-remap is specified.</p>
+        {{ form.result_field.label }}
+        {{ form.result_field }}
+        {% if form.result_field.errors %}
+          <ul class="errors">
+            {% for error in form.result_field.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+<hr style="width:50%;text-align:left;margin-left:0">
+      <fieldset class="pure-group">
+        <p>The delimiter separating the input reports data. Default is tab (\t)</p>
+        {{ form.delim.label }}
+        {{ form.delim(placeholder='\t') }}
+        {% if form.delim.errors %}
+          <ul class="errors">
+            {% for error in form.delim.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+<hr style="width:50%;text-align:left;margin-left:0">
+      <fieldset class="pure-group">
+        <p>Desired output file path (.tsv)</p>
+        {{ form.output.label }}
+        {{ form.output(placeholder='/location/of/output') }}
+        {% if form.output.errors %}
+          <ul class="errors">
+            {% for error in form.output.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+<hr style="width:50%;text-align:left;margin-left:0">
+      <fieldset class="pure-group">
+        <p>Print more verbose output (useful for analyzing more reports).</p>
+        {{ form.verbose.label }}
+        {{ form.verbose }}
+        {% if form.verbose.errors %}
+          <ul class="errors">
+            {% for error in form.verbose.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+<hr style="width:50%;text-align:left;margin-left:0">
+      <fieldset class="pure-group">
+        <p>Don't remap multilabel PEFinder result to Stanford labels</p>
+        {{ form.no_remap.label }}
+        {{ form.no_remap }}
+        {% if form.no_remap.errors %}
+          <ul class="errors">
+            {% for error in form.no_remap.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+<hr style="width:50%;text-align:left;margin-left:0">
+      <fieldset class="pure-group">
+        <p>Mark (mark), or classify (classify) reports. Default is (classify).</p>
+        {{ form.run.label }}
+        {{ form.run }}
+        {% if form.run.errors %}
+          <ul class="errors">
+            {% for error in form.run.errors %}
+              <li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+<hr style="width:50%;text-align:left;margin-left:0">
+      <div class="submit-button">
+        {{ form.submit }}
+      </div>
+
+    </form>
+
+{% endblock %}
