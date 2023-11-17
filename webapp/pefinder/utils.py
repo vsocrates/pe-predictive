@@ -1,4 +1,4 @@
-from logman import logger
+from .logman import logger
 import os
 import pandas
 import sys

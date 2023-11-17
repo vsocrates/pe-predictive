@@ -14,7 +14,7 @@ import radnlp.split as split
 import radnlp.utils as utils
 import radnlp.view as rview
 
-from logman import logger
+from .logman import logger
 import json
 import sys
 
@@ -28,7 +28,7 @@ def load_knowledge_base():
     which currently is picked using python 3 (and works in this container
     with python3, does not work for python version under that)
     '''
-    return pickle.load(open('data/kb.pkl','rb'))
+    return pickle.load(open('./webapp/pefinder/data/kb.pkl','rb'))
 
 
 def print_count(function=None,verbose=False):
@@ -267,5 +267,5 @@ def label_remapping(reports,kb=None,result_field=None,drop_result=True):
 
     if drop_result == True:
         logger.info("Dropping column %s",result_field)
-        reports = reports.drop(result_field, 1)
+        reports = reports.drop(result_field, axis=1)
     return reports
