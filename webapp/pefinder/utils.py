@@ -18,7 +18,6 @@ def load_reports(reports_path,report_field=None,id_field=None,delim=None):
     :param report_field: the field to use (default is report_text)
     :param delim: the delimiter separating the columns of the reports file
     '''
-    reports_path = os.path.abspath(reports_path)
     if not os.path.exists(reports_path):
         logger.error("Cannot find file or folder at %s, does it exist?",reports_path)
         sys.exit(1)
@@ -56,6 +55,7 @@ def load_reports(reports_path,report_field=None,id_field=None,delim=None):
     check_header(reports,
                  headers=[report_field,id_field])
 
+    reports = reports.astype({id_field:int, report_field:str})
     return reports
 
 

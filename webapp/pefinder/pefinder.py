@@ -263,9 +263,9 @@ def label_remapping(reports,kb=None,result_field=None,drop_result=True):
         else:
             missing +=1
 
-    logger.warning(" % reports did not have a pulmonary embolism classification result!", missing)
+    logger.warning(f"{missing} reports did not have a pulmonary embolism classification result!")
 
     if drop_result == True:
-        logger.info("Dropping column %s",result_field)
+        logger.info(f"Dropping column {result_field}")
         reports = reports.drop(result_field, axis=1)
     return reports

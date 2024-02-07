@@ -32,7 +32,7 @@ class PEPredictionForm(FlaskForm):
         validators=[
             Optional()
         ],
-        description="the field to save pefinder (chapman) result to, not saved unless --no-remap is specified.",
+        description="the field to save pefinder (chapman) result to.",
     )
     delim = StringField(
         "Delimiter",
@@ -59,7 +59,7 @@ class PEPredictionForm(FlaskForm):
         default=1,
         coerce=int
     )
-    no_remap = SelectField(
+    remap = SelectField(
         "Remap PEFidner to Stanford",
         choices=[(1, 'Yes'), (0, 'No')],
         validators=[
